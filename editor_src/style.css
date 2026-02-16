@@ -1,0 +1,64 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#view {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+#view > * {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    padding-bottom: 50px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color) var(--background);
+}
+
+#buttons {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(to bottom, transparent, var(--background));
+
+    div {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+
+        button {
+            padding: 5px 13px;
+            border-radius: 999px;
+            border: solid 1px #999;
+            background: var(--color);
+            color: var(--background);
+            transition: transform .2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+        button:active {
+            transform: scale(.97);
+        }
+    }
+}
+textarea {
+    background: var(--background);
+    color: var(--color);
+    resize: none;
+    outline: none;
+    border: 0;
+    border-right: 2px #999 solid;
+}
+
+
+
+/* to be injected */

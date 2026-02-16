@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD simple editor</title>
+    <style>
+        :root {
+            --background: #222;
+            --color: #fff;
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            background: var(--background);
+            color: var(--color);
+        }
+    </style>
+    <link rel="stylesheet" href="editor_src/style.css">
+</head>
+<body>
+    <div id="buttons">
+        <div>
+            <button onclick="copyprompt()">Промпт</button>
+            <button onclick="paste()">Вставить код</button>
+        </div>
+        <div>
+            <button onclick="copyhtml()">Скопировать контент</button>
+            <button onclick="toggletheme()">Сменить тему</button>
+        </div>
+    </div>
+    <div id="view">
+        <textarea id="input" oninput="update()">Текст редактировать здесь</textarea>
+        <div id="le_preview">Результат смотреть тут</div>
+    </div>
+    <script src="editor_src/main.js"></script>
+    <script src="editor_src/inject.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked-alert@2.1.2/dist/index.umd.min.js"></script>
+</body>
+</html>
