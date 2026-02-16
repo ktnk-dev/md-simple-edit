@@ -23,6 +23,9 @@ const inject_css = [
         overflow-x: auto; /* Adds the horizontal scrollbar */
         white-space: nowrap; /* Prevents text from wrapping within cells */
         width: 100%; 
+        * {
+            text-wrap: wrap;
+        }
         thead {
             tr {
                 gap: 0;
@@ -35,6 +38,7 @@ const inject_css = [
         tbody {
             tr {
                 td {
+                    min-width: 220px;
                     padding: 5px 10px;
                     border-bottom: solid 1px #888;
                 }
