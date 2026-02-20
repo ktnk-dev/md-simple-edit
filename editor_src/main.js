@@ -26,7 +26,7 @@ const update = () => {
 
 var theme_id = 0
 const themes = {
-    background: ['#222', '#fff'],
+    background_id: ['10', '240'],
     color: ['#fff', '#222']
 }
 const toggletheme = () => {
@@ -36,7 +36,6 @@ const toggletheme = () => {
     Object.keys(themes).map(key => {
         rootElement.style.setProperty(`--${key}`, themes[key][theme_value])
     })
-    rootElement.style.setProperty('--main-color', '#ff5733');
 }
 
 function copyToClipboard(text) {

@@ -6,8 +6,10 @@
     <title>MD simple editor</title>
     <style>
         :root {
-            --background: #222;
+            --background_id: 10;
+            --background: rgb(var(--background_id),var(--background_id),var(--background_id));
             --color: #fff;
+
         }
         body {
             margin: 0;
@@ -22,22 +24,69 @@
 <body>
     <div id="buttons">
         <div>
-            <button onclick="copyprompt()">Промпт</button>
-            <button onclick="paste()">Вставить код</button>
+            <!-- <button onclick="paste()">Вставить код</button> -->
         </div>
         <div>
+            <button onclick="copyprompt()">Промпт</button>
             <button onclick="copyhtml()">Скопировать контент</button>
             <button onclick="toggletheme()">Сменить тему</button>
         </div>
     </div>
     <div id="view">
-        <textarea id="input" oninput="update()">Текст редактировать здесь</textarea>
-        <div id="le_preview">Результат смотреть тут</div>
+        <textarea class="mw" id="input" oninput="update()">
+# Редактор
+обычный *курсив* **жирный** `код`
+
+
+## Github Alerts
+
+> [!NOTE]
+> Круто
+
+> [!CAUTION]
+> Опасно
+
+## Таблицы
+| Лол | Кек |
+| --- | --- |
+| Текст 1234 | 56789 текст |
+
+Линия
+
+---
+невидимая
+
+
+```python
+import openai
+
+def ask_ai(prompt):
+    # Инициализация клиента
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=100
+    )
+    return response.choices.text.strip()
+
+print(ask_ai("В чем смысл жизни?"))
+```
+
+
+        </textarea>
+        <div id="resize">
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
+        <div class="mw" id="le_preview"></div>
     </div>
+    <script src="editor_src/resize.js"></script>
     <script src="editor_src/prompt.js"></script>
     <script src="editor_src/inject.js"></script>
     <script src="editor_src/main.js"></script>
     <script src="editor_src/marked.umd.js"></script>
     <script src="editor_src/index.umd.min.js"></script>
+    <script>update()</script>
 </body>
 </html>
