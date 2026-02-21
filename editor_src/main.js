@@ -44,7 +44,7 @@ const update = async () => {
 }  
 
 var theme_id = Number.parseInt(localStorage.getItem('themeid_'))
-if (theme_id == NaN) {
+if (Number.isNaN(theme_id)) {
     theme_id = -1
     toggletheme()
 }
