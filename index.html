@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD simple editor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css" integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js" integrity="sha384-+W9OcrYK2/bD7BmUAk+xeFAyKp0QjyRQUCxeU31dfyTt/FrPsUgaBTLLkVf33qWt" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
     <style>
         :root {
             --background_id: 10;
@@ -27,6 +30,7 @@
             <!-- <button onclick="paste()">Вставить код</button> -->
         </div>
         <div>
+            <button onclick="eruda.init(); alert()">Eruda</button>
             <button onclick="copyprompt()">Промпт</button>
             <button onclick="copyhtml()">Скопировать контент</button>
             <button onclick="toggletheme()">Сменить тему</button>
@@ -72,6 +76,15 @@ def ask_ai(prompt):
 print(ask_ai("В чем смысл жизни?"))
 ```
 
+### LaTeX
+1.  $a^n \cdot a^m = a^{n+m}$
+2.  $a^n : a^m = a^{n-m}$
+3.  $(a^n)^m = a^{n \cdot m}$
+4.  $(a \cdot b)^n = a^n \cdot b^n$
+5.  $(\frac{a}{b})^n = \frac{a^n}{b^n}$
+6.  $a^0 = 1$
+7.  $a^{-n} = \frac{1}{a^n}$
+8.  $\sqrt[n]{a^k} = a^{\frac{k}{n}}$
 
         </textarea>
         <div id="resize">
@@ -81,12 +94,31 @@ print(ask_ai("В чем смысл жизни?"))
         </div>
         <div class="mw" id="le_preview"></div>
     </div>
+    <script src="editor_src/lib/eruda.js"></script>
     <script src="editor_src/resize.js"></script>
     <script src="editor_src/prompt.js"></script>
     <script src="editor_src/inject.js"></script>
     <script src="editor_src/main.js"></script>
-    <script src="editor_src/marked.umd.js"></script>
-    <script src="editor_src/index.umd.min.js"></script>
+    <script src="editor_src/lib/marked.umd.js"></script>
+    <script src="editor_src/lib/index.umd.min.js"></script>
+    <script src="editor_src/lib/tex-mml-chtml.js"></script>
     <script>update()</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+
+    </script>
 </body>
 </html>

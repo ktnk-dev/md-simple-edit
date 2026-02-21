@@ -1,8 +1,11 @@
 const get_css = () => inject_css.join()
-const update = () => {
-    le_preview.innerHTML = marked.use(markedAlert()).parse(
-        input.value
-    )
+const update = async () => {
+    var text = input.value
+
+    text = marked.use(markedAlert()).parse(text)
+    le_preview.innerHTML = text
+
+    
 
     const css = get_css()
     const v = () => document.querySelector('#cssinject').outerHTML = '<style id="cssinject">'+css+'</style>'
@@ -22,6 +25,8 @@ const update = () => {
     document.querySelectorAll('.markdown-alert-title').forEach(e => {
         Object.keys(translate).map(k => e.innerHTML = e.innerHTML.replace(k, translate[k]))
     })
+
+    //renderMathInElement(le_preview)
 }  
 
 var theme_id = 0
@@ -71,7 +76,7 @@ const copyhtml = () => {
 <style>${get_css()}</style>
 ${le_preview.outerHTML}
 <script>
-window.addEventListener('load', () => document.head.innerHTML += \`<style>${get_css()}</style>\`)
+window.addEventListener('load', () => document.head.innerHTML += \`<style>${get_css()}</style>${inject_to_head}\`)
 </script>
 `
     )
