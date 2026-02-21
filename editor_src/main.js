@@ -43,19 +43,22 @@ const update = async () => {
     
 }  
 
-var theme_id = Number.parseInt(localStorage.getItem('themeid'))
-if (theme_id == NaN) theme_id = 0
+var theme_id = Number.parseInt(localStorage.getItem('themeid_'))
+if (theme_id == NaN) {
+    theme_id = -1
+    toggletheme()
+}
 
 const themes = {
     background_id: ['10', '230'],
     color: ['#fff', '#222']
 }
 const toggletheme = () => {
-    localStorage.setItem('themeid', theme_id+1)
+    localStorage.setItem('themeid_', theme_id+1)
     settheme()
 }
 const settheme = () => {
-    theme_id = Number.parseInt(localStorage.getItem('themeid'))
+    theme_id = Number.parseInt(localStorage.getItem('themeid_'))
     theme_value = theme_id%2
     const rootElement = document.documentElement;
     Object.keys(themes).map(key => {
