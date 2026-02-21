@@ -19,6 +19,93 @@ body {
     scrollbar-color: var(--color) var(--background);
 }
 
+#menu.hidden {
+    transform: translateX(-600px);
+    opacity: 0;
+}
+#menu {
+    transition: transform .3s, opacity .3s;
+    z-index: 100;
+    overflow-y: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: calc(100vh - 70px);
+    --v: calc(var(--background_id) + 0);
+    background:rgb(var(--v), var(--v), var(--v));
+    box-shadow: 0 0 90px 10px rgba(0,0,0,.3);
+    max-width: 400px;
+    width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    padding-bottom: 60px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color) rgb(var(--v), var(--v), var(--v));
+
+    .list {
+        margin-bottom: 10px;
+        display: flex;
+        gap: 10px;
+
+        button {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px 15px;
+            border: 0;
+            border-radius: 12px;
+            cursor: pointer;
+            color: var(--background);
+            background: var(--color);
+        }
+    }
+    
+    .note {
+        --l: calc(var(--background_id) + 30);
+        --w: calc(var(--background_id) + 10);
+        background:rgb(var(--w), var(--w), var(--w));
+        display: flex;
+        max-width: 100%;
+        /* margin: 10px; */
+        gap: 10px;
+        align-items: center;
+        padding: 7px 14px;
+        /* padding-right: 5px; */
+        border-radius: 100px;
+        
+        span {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            overflow: hidden;
+            text-wrap: nowrap;
+            mask-image: linear-gradient(
+                to right,
+                #000 90%,
+                transparent
+            );
+        }
+
+        svg {
+            opacity: 0;
+            fill: var(--color);
+            height: 20px;
+            width: 20px;
+        }
+    }
+    .note:hover {
+        background:rgb(var(--l), var(--l), var(--l));
+        cursor: pointer;
+        svg {
+            opacity: 0.4;
+        }
+
+        svg:hover {
+            opacity: 1;
+        }
+    }
+}
+
 #buttons {
     position: fixed;
     bottom: 0;
@@ -33,12 +120,22 @@ body {
         gap: 10px;
         padding: 10px;
 
+        svg {
+            fill: var(--color);
+            margin: auto 0;
+            cursor: pointer;
+            padding: 5px;
+        }
+
         button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 5px 13px;
             border-radius: 999px;
             border: solid 1px #999;
-            background: var(--color);
             color: var(--background);
+            background: var(--color);
             transition: transform .2s;
         }
         button:hover {
