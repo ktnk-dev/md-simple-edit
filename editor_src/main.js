@@ -26,7 +26,18 @@ const update = async () => {
         Object.keys(translate).map(k => e.innerHTML = e.innerHTML.replace(k, translate[k]))
     })
 
-    //renderMathInElement(le_preview)
+    renderMathInElement(document.body, {
+            // customised options
+            // • auto-render specific keys, e.g.:
+            delimiters: [
+                {left: '$$', right: '$$', display: false},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: false}
+            ],
+            // • rendering keys, e.g.:
+            throwOnError : false
+            });
 }  
 
 var theme_id = 0
