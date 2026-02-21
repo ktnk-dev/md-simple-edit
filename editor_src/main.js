@@ -43,11 +43,7 @@ const update = async () => {
     
 }  
 
-var theme_id = Number.parseInt(localStorage.getItem('themeid_'))
-if (Number.isNaN(theme_id)) {
-    theme_id = -1
-    toggletheme()
-}
+
 
 const themes = {
     background_id: ['10', '230'],
@@ -64,6 +60,12 @@ const settheme = () => {
     Object.keys(themes).map(key => {
         rootElement.style.setProperty(`--${key}`, themes[key][theme_value])
     })
+}
+
+var theme_id = Number.parseInt(localStorage.getItem('themeid_'))
+if (Number.isNaN(theme_id)) {
+    theme_id = -1
+    toggletheme()
 }
 
 function copyToClipboard(text) {
