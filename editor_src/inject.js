@@ -1,5 +1,6 @@
 const inject_css = [
 `#le_preview {
+    .katex, .katex * {text-wrap: nowrap !important;}
     font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     >* {
         margin: 0 0 10px !important;
