@@ -120,6 +120,13 @@ const inject_css = [
         width: 100%;
         border-radius: 15px;
     }
+    img[alt*="50%"] {
+        width: 100% !important;
+    }
+    img[alt*="min"] {
+        max-width: 400px !important;
+    }
+
 
     hr {
         opacity: 0;
