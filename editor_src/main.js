@@ -5,6 +5,7 @@ const update = async () => {
         noteid = await db.save(noteid, text)
     }
 
+    text = text.replaceAll('\\\\', '\\\\\\\\')
     text = marked.use(markedAlert()).parse(text)
     le_preview.innerHTML = text
     
