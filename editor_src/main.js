@@ -30,6 +30,21 @@ const update = async () => {
         Object.keys(translate).map(k => e.innerHTML = e.innerHTML.replace(k, translate[k]))
     })
 
+    document.querySelectorAll('img').forEach(e => {
+        const style = e.getAttribute('alt')
+        if (!style || style.trim().length < 1) return
+        style.split(' ').map(str => {
+
+        }).join(';')
+        e.setAttribute(`style`,
+            style.split(' ').map(str => {
+                if (str.includes('%'))  return `max-width: ${str} !important`
+                if (str.includes('px')) return `max-width: ${str} !important`
+                if (str == 'center') return `margin: 0 auto`
+            }).join(';')
+        )
+    })
+
     renderMathInElement(document.body, {
         // customised options
         // • auto-render specific keys, e.g.:
