@@ -1,6 +1,7 @@
 const get_css = () => inject_css.join()
 const update = async () => {
     var text = input.value
+    kv.set('noteid', noteid)
     if (text.trim().length > 0) {
         noteid = await db.save(noteid, text)
     }
@@ -51,11 +52,11 @@ const themes = {
     color: ['#fff', '#222']
 }
 const toggletheme = () => {
-    localStorage.setItem('themeid_', theme_id+1)
+    kv.set('themeid_', Number.parseInt(kv.get('themeid_', 0))+1)
     settheme()
 }
 const settheme = () => {
-    theme_id = Number.parseInt(localStorage.getItem('themeid_'))
+    theme_id = Number.parseInt(kv.get('themeid_', 0))
     theme_value = theme_id%2
     const rootElement = document.documentElement;
     Object.keys(themes).map(key => {
@@ -63,11 +64,22 @@ const settheme = () => {
     })
 }
 
-var theme_id = Number.parseInt(localStorage.getItem('themeid_'))
-if (Number.isNaN(theme_id)) {
-    theme_id = -1
-    toggletheme()
+const togglewrap = () => {
+    const wrap = (Number.parseInt(kv.get('wrap', 0))%2)+ 1
+    kv.set('wrap', wrap)
+    setwrap()
+    
 }
+const setwrap = () => {
+    const svg = [
+        `<svg ? xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M160-160v-640h80v640h-80Zm498-178-56-57 45-45H320v-80h327l-45-45 56-57 142 142-142 142ZM480-160v-200h80v200h-80Zm0-440v-200h80v200h-80Z"/></svg>`,
+        `<svg ? xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M160-160v-640h80v640h-80Zm560 0v-640h80v640h-80Zm-296-98L282-400l142-141 56 56-45 45h85q33 0 56.5-23.5T600-520q0-33-23.5-56.5T520-600H280v-80h240q66 0 113 47t47 113q0 66-47 113t-113 47h-85l45 45-56 57Z"/></svg>`
+    ][(Number.parseInt(kv.get('wrap', 0))+0 )%2]
+    try{document.querySelector('#wrapicon').remove()}catch{}
+    document.querySelector('#buttons > .icons').innerHTML+=svg.replace('?', 'onclick="togglewrap()" id="wrapicon"')
+    input.setAttribute('wrap', Number.parseInt(kv.get('wrap', 0))%2?'soft':'off')
+}
+
 
 function copyToClipboard(text) {
   // 1. Create a temporary textarea
@@ -131,13 +143,14 @@ const rerendermenu = async () => {
         </div>
             `
     })
+    lockedid = -1
 }
 
 var lockedid = -1
 const menuopen = async () => {
     menu.classList.remove('hidden')
     rerendermenu()
-    lockedid = -1
+    
 }
 const newnote = () => {
     input.value = ''
@@ -145,6 +158,7 @@ const newnote = () => {
     le_preview.innerHTML = ''
     input.focus()
     menu.classList.add('hidden')
+    update()
 }
 
 const delnote = async index => {
@@ -161,4 +175,11 @@ const loadnote = async index => {
     input.value = out.content
     update()
     menu.classList.add('hidden')
+}
+const loadnotefromnoteid = async () => {
+    (await db.load()).forEach(e => {
+        if (e.id != noteid) return
+        input.value = e.content
+        update()
+    })
 }

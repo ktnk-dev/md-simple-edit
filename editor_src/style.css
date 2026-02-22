@@ -107,6 +107,7 @@ body {
 }
 
 #buttons {
+    z-index: 1;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -153,6 +154,12 @@ textarea {
     resize: none;
     outline: none;
     border: 0;
+    overflow-x: auto !important;
+    mask-image: linear-gradient(
+        to right,
+        #000 calc(100% - 20px),
+        transparent
+    );
     /* border-right: 2px #999 solid; */
 }
 #le_preview {

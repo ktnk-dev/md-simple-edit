@@ -120,11 +120,20 @@ const inject_css = [
         width: 100%;
         border-radius: 15px;
     }
-    img[alt*="50%"] {
-        width: 100% !important;
+    img[alt*="25%"] {
+        width: 25% !important;
     }
-    img[alt*="min"] {
+    img[alt*="50%"] {
+        width: 50% !important;
+    }
+    img[alt*="75%"] {
+        width: 75% !important;
+    }
+    img[alt*="400px"] {
         max-width: 400px !important;
+    }
+    img[alt*="500px"] {
+        max-width: 500px !important;
     }
 
 

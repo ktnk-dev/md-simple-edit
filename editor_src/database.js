@@ -1,4 +1,3 @@
-var noteid = null
 const db = {
     _db: null,
 
@@ -62,3 +61,14 @@ const db = {
         });
     }
 };
+
+const kv = {
+    get: (key, default_) => {
+        const v = localStorage.getItem(key)
+        return v == null ? default_ : v
+    },
+    set: (k, v) => localStorage.setItem(k, v)
+}
+
+var noteid = Number.parseInt(kv.get('noteid', null))
+if (Number.isNaN(noteid)) noteid = null
