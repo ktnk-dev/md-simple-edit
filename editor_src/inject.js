@@ -129,6 +129,12 @@ const inject_css = [
     img[alt*="75%"] {
         width: 75% !important;
     }
+    img[alt*="200px"] {
+        max-width: 200px !important;
+    }
+    img[alt*="300px"] {
+        max-width: 300px !important;
+    }
     img[alt*="400px"] {
         max-width: 400px !important;
     }
