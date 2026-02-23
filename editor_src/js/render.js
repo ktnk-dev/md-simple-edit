@@ -1,9 +1,9 @@
 const Context = {
     get_text: () => input.value,
-    save_note: async text => {
+    save_note: async () => {
         kv.set('noteid', noteid)
-            if (text.trim().length > 0) 
-                noteid = await db.save(noteid, Context.get_text())
+        if (Context.get_text().trim().length > 0) 
+            noteid = await db.save(noteid, Context.get_text())
     },
     fix_latex_newline: text => {
         return text.replaceAll('\\\\', '\\\\\\\\')

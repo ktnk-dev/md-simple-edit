@@ -25,15 +25,16 @@ body {
 }
 #menu {
     transition: transform .3s, opacity .3s;
-    z-index: 100;
+    z-index: 1000;
     overflow-y: auto;
     position: fixed;
     left: 0;
     top: 0;
     height: calc(100vh - 70px);
     --v: calc(var(--background_id) + 7);
+    --s: calc(var(--background_id) - 70);
     background:rgb(var(--v), var(--v), var(--v));
-    box-shadow: 0 0 90px 10px rgba(0,0,0,.3);
+    box-shadow: 50px 0 190px 0px rgba(var(--s), var(--s), var(--s),1);
     max-width: 400px;
     width: 400px;
 
@@ -131,7 +132,7 @@ body {
             margin: auto 0;
             margin-left: 3px;
             cursor: pointer;
-            padding: 5px;
+            padding: 7px;
             border-radius: 999px;
             --w: calc(var(--background_id) + 30);
         }
