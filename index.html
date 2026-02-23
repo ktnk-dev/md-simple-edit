@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="./editor_src/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css" integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.js" integrity="sha384-+W9OcrYK2/bD7BmUAk+xeFAyKp0QjyRQUCxeU31dfyTt/FrPsUgaBTLLkVf33qWt" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js?cacheid=10" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
     <style>
         :root {
             --background_id: 10;
@@ -23,7 +23,7 @@
             color: var(--color);
         }
     </style>
-    <link rel="stylesheet" href="editor_src/style.css?cacheid=10">
+    <link rel="stylesheet" href="editor_src/style.css">
 </head>
 <body>
     <div id="menu" class="hidden"></div>
@@ -48,16 +48,16 @@
         </div>
         <div class="mw" id="le_preview"></div>
     </div>
-    <script src="editor_src/database.js?cacheid=10"></script>
-    <script src="editor_src/main.js?cacheid=10"></script>
+    <script src="editor_src/js/database.js"></script>
+    <script src="editor_src/js/main.js"></script>
     <script>settheme();setwrap();loadnotefromnoteid()</script>
-    <script src="editor_src/lib/eruda.js?cacheid=10"></script>
-    <script src="editor_src/resize.js?cacheid=10"></script>
-    <script src="editor_src/prompt.js?cacheid=10"></script>
-    <script src="editor_src/inject.js?cacheid=10"></script>
-    <script src="editor_src/lib/marked.umd.js?cacheid=10"></script>
-    <script src="editor_src/lib/index.umd.min.js?cacheid=10"></script>
-    <script src="editor_src/lib/latex.js?cacheid=10"></script>
+    <script src="editor_src/lib/eruda.js"></script>
+    <script src="editor_src/js/resize.js"></script>
+    <script src="editor_src/js/prompt.js"></script>
+    <script src="editor_src/js/inject.js"></script>
+    <script src="editor_src/lib/marked.umd.js"></script>
+    <script src="editor_src/lib/index.umd.min.js"></script>
+    <script src="editor_src/lib/latex.js"></script>
     <script>update()</script>
     <script>
         
