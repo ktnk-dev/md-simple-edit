@@ -1,64 +1,3 @@
-const get_css = () => inject_css.join()
-const update = async () => {
-    var text = input.value
-    kv.set('noteid', noteid)
-    if (text.trim().length > 0) {
-        noteid = await db.save(noteid, text)
-    }
-
-    text = text.replaceAll('\\\\', '\\\\\\\\')
-    text = marked.use(markedAlert()).parse(text)
-    le_preview.innerHTML = text
-    
-
-    const css = get_css()
-    const v = () => document.querySelector('#cssinject').outerHTML = '<style id="cssinject">'+css+'</style>'
-    try {
-        v()
-    } catch (error) {
-        document.head.innerHTML += `<style id="cssinject"></style>`
-        v()
-    }
-    const translate = {
-        'Note': 'Запомни',
-        'Tip': 'На заметку',
-        'Important': 'Важно',
-        'Warning': 'Внимание',
-        'Caution': 'Осторожнее'
-    }
-    document.querySelectorAll('.markdown-alert-title').forEach(e => {
-        Object.keys(translate).map(k => e.innerHTML = e.innerHTML.replace(k, translate[k]))
-    })
-
-    document.querySelectorAll('img').forEach(e => {
-        const style = e.getAttribute('alt')
-        if (!style || style.trim().length < 1) return
-        style.split(' ').map(str => {
-
-        }).join(';')
-        e.setAttribute(`style`,
-            style.split(' ').map(str => {
-                if (str.includes('%'))  return `max-width: ${str} !important`
-                if (str.includes('px')) return `max-width: ${str} !important`
-                if (str == 'center') return `margin: 0 auto`
-            }).join(';')
-        )
-    })
-
-    renderMathInElement(document.body, {
-        // customised options
-        // • auto-render specific keys, e.g.:
-        delimiters: [
-            {left: '$$', right: '$$', display: false},
-            {left: '$', right: '$', display: false},
-            {left: '\\(', right: '\\)', display: false},
-            {left: '\\[', right: '\\]', display: false}
-        ],
-        // • rendering keys, e.g.:
-        throwOnError : false
-    });
-    
-}  
 
 
 
@@ -126,10 +65,15 @@ function copyToClipboard(text) {
 const copyhtml = () => {
     copyToClipboard(
         `
-<style>${get_css()}</style>
-${le_preview.outerHTML}
+<style>${Context.get_css()}</style>
+${Context.get_html()}
 <script>
-window.addEventListener('load', () => document.head.innerHTML += \`<style>${get_css()}</style>${inject_to_head}\`)
+window.addEventListener(
+    'load', () => 
+        document.head.innerHTML += \`
+<style>${Context.get_css()}</style>
+${inject_to_head}\`
+    )
 </script>
 `
     )
