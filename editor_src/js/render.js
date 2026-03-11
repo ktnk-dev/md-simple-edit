@@ -12,7 +12,7 @@ const Context = {
         return marked.use(markedAlert()).parse(text)
     },
     inject_css: () => {
-        const css = get_css()
+        const css = Context.get_css()
         const v = () => document.querySelector('#cssinject').outerHTML = '<style id="cssinject">'+css+'</style>'
         try {
             v()
@@ -74,5 +74,6 @@ const update = async () => {
 
     Context.inject_css()
     Context.translate_alerts()
+    Context.render_latex()
     Context.resolve_image_alt_styles()
 }  
