@@ -3,7 +3,8 @@
 
 const themes = {
     background_id: ['10', '230'],
-    color: ['#fff', '#222']
+    color: ['#fff', '#222'],
+    tab_icon: ['./editor_src/icon.svg', './editor_src/icon.light.svg']
 }
 const toggletheme = () => {
     kv.set('themeid_', Number.parseInt(kv.get('themeid_', 0))+1)
@@ -16,6 +17,7 @@ const settheme = () => {
     Object.keys(themes).map(key => {
         rootElement.style.setProperty(`--${key}`, themes[key][theme_value])
     })
+    document.querySelector('#tab_icon').href = themes.tab_icon[theme_value]
 }
 
 const togglewrap = () => {
